@@ -44,6 +44,8 @@ const login = async (req, res) => {
         role: user.role,
       },
     });
+    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+console.log('DEBUG - User found:', user.username, '| Password match:', passwordMatch, '| JWT_SECRET exists:', !!process.env.JWT_SECRET);
   } catch (err) {
     console.error('Login error:', err.message);
     res.status(500).json({ message: 'Server error during login.' });
