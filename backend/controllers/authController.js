@@ -16,7 +16,11 @@ const login = async (req, res) => {
       [username]
     );
 
-  const user = result.rows[0];
+    if (result.rows.length === 0) {
+      return res.status(401).json({ message: 'Invalid credentials.' });
+    }
+
+    const user = result.rows[0];
     const passwordMatch = await bcrypt.compare(password, user.password_hash);
     console.log('DEBUG - User found:', user.username, '| Password match:', passwordMatch, '| JWT_SECRET exists:', !!process.env.JWT_SECRET);
 
@@ -45,4 +49,3 @@ const login = async (req, res) => {
     res.status(500).json({ message: 'Server error during login.' });
   }
 };
-Add full error logging
