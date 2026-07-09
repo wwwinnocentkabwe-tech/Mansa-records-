@@ -44,10 +44,10 @@ const login = async (req, res) => {
         role: user.role,
       },
     });
-  } catch (err) {
-    console.error('Login error FULL:', err);
-    res.status(500).json({ message: 'Server error during login.' });
-  }
+} catch (err) {
+  console.error('Login error:', err.message);
+  res.status(500).json({ message: 'Server error during login.' });
+}
 };
 
 // GET /api/auth/me
