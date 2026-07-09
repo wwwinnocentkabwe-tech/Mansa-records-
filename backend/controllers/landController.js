@@ -62,10 +62,11 @@ const createLandRecord = async (req, res) => {
       [plot_number, owner_nrc, owner_name, owner_phone, location, ward, area_sqm, land_use, status || 'Active', registered_date, notes, req.user.id]
     );
     res.status(201).json(result.rows[0]);
-  } catch (err) {
-    if (err.code === '23505') return res.status(409).json({ message: 'Plot number already exists.' });
-    res.status(500).json({ message: 'Server error.' });
-  }
+ } catch (err) {
+  console.error('Create land record error:', err.message);
+  if (err.code === '23505') return res.status(409).json({ message: 'Plot number already exists.' });
+  res.status(500).json({ message: 'Server error.' });
+}
 };
 
 const updateLandRecord = async (req, res) => {
