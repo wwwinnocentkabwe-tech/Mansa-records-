@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 const Login = () => {
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -42,11 +43,33 @@ const Login = () => {
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input
-              type="password" placeholder="Enter password" required
-              value={form.password}
-              onChange={e => setForm({ ...form, password: e.target.value })}
-            />
+<div style={{ position: 'relative' }}>
+  <input
+    type={showPassword ? 'text' : 'password'}
+    placeholder="Enter password"
+    required
+    value={form.password}
+    onChange={e => setForm({ ...form, password: e.target.value })}
+    style={{ paddingRight: 40 }}
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(s => !s)}
+    style={{
+      position: 'absolute',
+      right: 8,
+      top: '50%',
+      transform: 'translateY(-50%)',
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      fontSize: 14,
+      color: '#718096'
+    }}
+  >
+    {showPassword ? '🙈' : '👁️'}
+  </button>
+</div>
           </div>
           <button type="submit" className="login-submit" disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}
