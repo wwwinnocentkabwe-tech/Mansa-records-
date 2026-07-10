@@ -51,6 +51,7 @@ const Users = () => {
 <td data-label="Role">{roleBadge(u.role)}</td>
 <td data-label="Status"><span className={`badge ${u.is_active ? 'badge-green' : 'badge-gray'}`}>{u.is_active ? 'Active' : 'Inactive'}</span></td>
 <td data-label="Created">{new Date(u.created_at).toLocaleDateString('en-ZM')}</td>
+                  </tr>
               ))}
             </tbody>
           </table>
