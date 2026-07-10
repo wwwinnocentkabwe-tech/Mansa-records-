@@ -90,9 +90,13 @@ const createUser = async (req, res) => {
       [full_name, username, email, password_hash, role]
     );
     res.status(201).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ message: 'Server error.' });
+} catch (err) {
+  console.error('Create user error:', err.message);
+  if (err.code === '23505') {
+    return res.status(409).json({ message: 'Username or email already exists.' });
   }
+  res.status(500).json({ message: 'Server error.' });
+}
 };
 
 module.exports = { login, getMe, getUsers, createUser };
