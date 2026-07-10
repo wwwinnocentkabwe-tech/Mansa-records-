@@ -82,14 +82,14 @@ const Land = () => {
                 <tr><td colSpan={8}><div className="empty-state"><p>No land records found.</p></div></td></tr>
               ) : records.map(r => (
                 <tr key={r.id}>
-                  <td><strong>{r.plot_number}</strong></td>
-                  <td>{r.owner_name}<br /><small style={{ color: '#718096' }}>{r.owner_nrc}</small></td>
-                  <td>{r.location}</td>
-                  <td>{r.ward || '—'}</td>
-                  <td>{r.area_sqm ? Number(r.area_sqm).toLocaleString() : '—'}</td>
-                  <td><span className="badge badge-blue">{r.land_use}</span></td>
-                  <td>{statusBadge(r.status)}</td>
-                  <td>
+            <td data-label="Plot Number"><strong>{r.plot_number}</strong></td>
+<td data-label="Owner">{r.owner_name}<br /><small style={{ color: '#718096' }}>{r.owner_nrc}</small></td>
+<td data-label="Location">{r.location}</td>
+<td data-label="Ward">{r.ward || '—'}</td>
+<td data-label="Area (m²)">{r.area_sqm ? Number(r.area_sqm).toLocaleString() : '—'}</td>
+<td data-label="Land Use"><span className="badge badge-blue">{r.land_use}</span></td>
+<td data-label="Status">{statusBadge(r.status)}</td>
+<td data-label="Actions">
                     {canEdit && <button className="btn btn-outline btn-sm" style={{ marginRight: 6 }} onClick={() => openEdit(r)}>Edit</button>}
                     {user?.role === 'admin' && <button className="btn btn-danger btn-sm" onClick={() => handleDelete(r.id)}>Delete</button>}
                   </td>
