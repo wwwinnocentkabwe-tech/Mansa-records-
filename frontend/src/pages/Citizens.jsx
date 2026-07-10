@@ -78,18 +78,18 @@ const Citizens = () => {
               {records.length === 0 ? (
                 <tr><td colSpan={7}><div className="empty-state"><p>No citizens found.</p></div></td></tr>
               ) : records.map(r => (
-                <tr key={r.id}>
-                  <td><strong>{r.nrc_number}</strong></td>
-                  <td>{r.first_name} {r.last_name}</td>
-                  <td>{r.gender || '—'}</td>
-                  <td>{r.phone || '—'}</td>
-                  <td>{r.ward || '—'}</td>
-                  <td>{statusBadge(r.status)}</td>
-                  <td>
-                    {canEdit && <button className="btn btn-outline btn-sm" style={{ marginRight: 6 }} onClick={() => openEdit(r)}>Edit</button>}
-                    {user?.role === 'admin' && <button className="btn btn-danger btn-sm" onClick={() => handleDelete(r.id)}>Delete</button>}
-                  </td>
-                </tr>
+<tr key={r.id}>
+  <td data-label="NRC Number"><strong>{r.nrc_number}</strong></td>
+  <td data-label="Full Name">{r.first_name} {r.last_name}</td>
+  <td data-label="Gender">{r.gender || '—'}</td>
+  <td data-label="Phone">{r.phone || '—'}</td>
+  <td data-label="Ward">{r.ward || '—'}</td>
+  <td data-label="Status">{statusBadge(r.status)}</td>
+  <td data-label="Actions">
+    {canEdit && <button className="btn btn-outline btn-sm" style={{ marginRight: 6 }} onClick={() => openEdit(r)}>Edit</button>}
+    {user?.role === 'admin' && <button className="btn btn-danger btn-sm" onClick={() => handleDelete(r.id)}>Delete</button>}
+  </td>
+</tr>
               ))}
             </tbody>
           </table>
