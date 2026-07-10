@@ -86,17 +86,17 @@ const Business = () => {
                 <tr><td colSpan={8}><div className="empty-state"><p>No business licences found.</p></div></td></tr>
               ) : records.map(r => (
                 <tr key={r.id} style={isExpiringSoon(r.expiry_date, r.status) ? { background: '#fffbeb' } : {}}>
-                  <td><strong>{r.licence_number}</strong></td>
-                  <td>{r.business_name}</td>
-                  <td>{r.owner_name}<br /><small style={{ color: '#718096' }}>{r.phone}</small></td>
-                  <td>{r.business_type || '—'}</td>
-                  <td>{r.ward || '—'}</td>
-                  <td>
-                    {r.expiry_date ? new Date(r.expiry_date).toLocaleDateString('en-ZM') : '—'}
-                    {isExpiringSoon(r.expiry_date, r.status) && <span className="badge badge-yellow" style={{ marginLeft: 6 }}>Soon</span>}
-                  </td>
-                  <td>{statusBadge(r.status)}</td>
-                  <td>
+              <td data-label="Licence No."><strong>{r.licence_number}</strong></td>
+<td data-label="Business Name">{r.business_name}</td>
+<td data-label="Owner">{r.owner_name}<br /><small style={{ color: '#718096' }}>{r.phone}</small></td>
+<td data-label="Type">{r.business_type || '—'}</td>
+<td data-label="Ward">{r.ward || '—'}</td>
+<td data-label="Expiry">
+  {r.expiry_date ? new Date(r.expiry_date).toLocaleDateString('en-ZM') : '—'}
+  {isExpiringSoon(r.expiry_date, r.status) && <span className="badge badge-yellow" style={{ marginLeft: 6 }}>Soon</span>}
+</td>
+<td data-label="Status">{statusBadge(r.status)}</td>
+<td data-label="Actions">
                     {canEdit && <button className="btn btn-outline btn-sm" style={{ marginRight: 6 }} onClick={() => openEdit(r)}>Edit</button>}
                     {user?.role === 'admin' && <button className="btn btn-danger btn-sm" onClick={() => handleDelete(r.id)}>Delete</button>}
                   </td>
