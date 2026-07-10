@@ -45,13 +45,12 @@ const Users = () => {
             <tbody>
               {users.map(u => (
                 <tr key={u.id}>
-                  <td><strong>{u.full_name}</strong></td>
-                  <td>{u.username}</td>
-                  <td>{u.email}</td>
-                  <td>{roleBadge(u.role)}</td>
-                  <td><span className={`badge ${u.is_active ? 'badge-green' : 'badge-gray'}`}>{u.is_active ? 'Active' : 'Inactive'}</span></td>
-                  <td>{new Date(u.created_at).toLocaleDateString('en-ZM')}</td>
-                </tr>
+                 <td data-label="Full Name"><strong>{u.full_name}</strong></td>
+<td data-label="Username">{u.username}</td>
+<td data-label="Email">{u.email}</td>
+<td data-label="Role">{roleBadge(u.role)}</td>
+<td data-label="Status"><span className={`badge ${u.is_active ? 'badge-green' : 'badge-gray'}`}>{u.is_active ? 'Active' : 'Inactive'}</span></td>
+<td data-label="Created">{new Date(u.created_at).toLocaleDateString('en-ZM')}</td>
               ))}
             </tbody>
           </table>
